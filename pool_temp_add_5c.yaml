@@ -1,0 +1,18 @@
+alias: Pool Temp Set Helper
+description: >-
+  Sets input_number.pooltemp_5 to 5 degrees above actual pool temp, used as a solar panel heater trigger  # Ensure you create a number helper called input_number.pooltemp_5
+mode: single
+triggers:
+  - entity_id:
+      - sensor.<pool_water_temp>
+    trigger: state
+conditions:
+  - condition: sun
+    before: sunset
+    after: sunrise
+actions:
+  - data_template:
+      entity_id: input_number.pooltemp_5
+      value: "{{ (states('sensor.<pool_water_temp>')|float + 5 |float) }}"
+    action: input_number.set_value
+
