@@ -1,5 +1,5 @@
 # Add these to your sensor template yaml
-# The platorm filter gives a smoothed out moving average of the returning water temperature and is used by the Kw calculating platform filter.
+# The platorm filter gives a smoothed out 2 second moving average of the returning water temperature required by the Kw calculating platform filter.
 # The platform template calculates how much heat output in Kw the panels are generating. 
 # Note you need to change the <FLOW RATE IN LITRES/MIN> value to your solar panel return flow rate in litres / minute, measure with a bucket and stopwatch :)
 
