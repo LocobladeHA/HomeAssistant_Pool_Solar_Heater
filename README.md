@@ -9,6 +9,9 @@ Automation Logic: If the solar panel internal air temperature is 5c or more abov
 #### **pool_temp_add_5c.yaml**
 Helper automation that updates the input_<boolean_pool_water_temp_plus5c>
 
+#### **Overnight_Cooling.yaml**
+Optional automation, can be used when the pool is too warm, running water through your solar panels overnight which has a cooling effect. My return water comes back about 2c lower than it left the pool when run on a summer night.
+
 #### **Optional_Sensors.yaml**
 Not needed for the main automation but you can add these sensors to caclulate the realtime heat output of your solar panels in kW for display on your dashboard.
 
