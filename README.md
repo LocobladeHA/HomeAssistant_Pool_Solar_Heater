@@ -6,7 +6,7 @@ This is the main automation that controls a water pump, circulating pool water a
 
 The automation triggers whenever the solar panel air temperature changes with some conditions to prevent it running at night etc.
 
-Logic: If the solar panel air temperature is 5c or more above the pool water temperature it will start the pump for 8 minutes to get a reliable return flow temperature from the panels. It then runs a while loop to monitor the pool water temperature and the water returning from the solar panels every 15 seconds. If the return water remains warmer than the pool water it will stay in the loop, letting the pump continue to run. If the return water isn't warmer than the pool water it will break out of the loop and stop the pump. The 5c offset works for my panels but you may need to play with the threshold via the helper input boolean to suit your setup.
+Logic: If the solar panel air temperature is 5c or more above the pool water temperature it will start the pump for 8 minutes to get a reliable return flow temperature from the panels. It then runs a while loop to monitor the pool water temperature and the water returning from the solar panels every 15 seconds. If the return water remains warmer than the pool water it will stay in the loop, letting the pump continue to run. If the return water isn't warmer than the pool water it will break out of the loop and stop the pump. The 5c offset works for my panels but you may need to play with the threshold via the helper input pool_temp_add_5c.yaml automation to suit your setup.
 
 #### **pool_temp_add_5c.yaml**
 Helper automation that updates the input_<boolean_pool_water_temp_plus5c>`
