@@ -12,6 +12,8 @@ Helper automation that updates the input_<boolean_pool_water_temp_plus5c>
 #### **Optional_Sensors.yaml**
 Not needed for the main automation but you can add these sensors to caclulate the realtime heat output of your solar panels in kW for display on your dashboard.
 
+
+
 **To run the automations you'll need to provide the following input entities and helpers:**
 
 #### **sensor.<solar_panel_air_temp>**
