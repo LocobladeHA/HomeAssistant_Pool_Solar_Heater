@@ -1,0 +1,96 @@
+alias: Solar Panel Manager
+description: >-
+  Automation to control a pump feeding water circulatiing solar panels based on the pool temperature, solar panel air temperature and return water temperature
+triggers:   # Triggers the automation every time the solar panel air temperatue changes 
+  - entity_id:
+      - sensor.<solar_panel_air_temp>
+    trigger: state
+conditions:
+  - condition: state # Optional - create a helper controlled by a switch on your dashboard to turn off the pump if the pool is being used
+    entity_id: input_<boolean_pool_in_use>  
+    state: "off"
+    enabled: true
+  - condition: sun # Ensures the automation is only run during daylight hours
+    before: sunset        
+    after: sunrise
+    after_offset: "01:00:00"
+    enabled: true
+    before_offset: "01:00:00"
+  - condition: numeric_state # Optional - set maximum pool temperature that the heating is allowed to run at
+    entity_id: sensor.<pool_water_temp>
+    below: 35
+actions:
+  - choose:
+      - conditions: # Option 1 - Turns pump on for 8 minutes if the solar panel is 5c above the water temperature   
+          - condition: numeric_state
+            entity_id: sensor.<solar_panel_air_temp>
+            above: input_<boolean_pool_water_temp_plus5c>
+        sequence:   
+          - target:
+              entity_id: switch.<solar_water_pump>
+            data: {}
+            action: switch.turn_on
+          - delay:
+              hours: 0
+              minutes: 8
+              seconds: 0
+              milliseconds: 0
+          - repeat:  # Creates a 15s loop that leaves the pump running whilst all the conditions are met, including return water temp being above pool temp
+              while:  
+                - condition: and
+                  conditions:
+                    - condition: sun
+                      before: sunset
+                      after: sunrise
+                      after_offset: "01:00:00"
+                      enabled: true
+                    - condition: state
+                      entity_id: input_<boolean_pool_in_use>
+                      state: "off"
+                      enabled: false
+                    - condition: numeric_state
+                      entity_id: sensor.<pool_water_temp>
+                      below: 35
+                    - condition: not
+                      conditions:
+                        - condition: numeric_state
+                          entity_id: sensor.<solar_water_return_temp>
+                          alias: Solar water return flow is above pool temperature
+                          below: sensor.<pool_water_temp>
+              sequence:
+                - delay:
+                    hours: 0
+                    minutes: 0
+                    seconds: 15
+                    milliseconds: 0
+          - data: {}
+            target:
+              entity_id: switch.<solar_water_pump>
+            action: switch.turn_off
+      - conditions:  # Option 2 - runs if low panel temperature doesn't trigger option 1 to turn off pump when the panel cools off and the return water isn't being heated
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: switch.<solar_water_pump>
+                state: "on"
+                for:
+                  hours: 0
+                  minutes: 5
+                  seconds: 0
+              - condition: numeric_state
+                entity_id: sensor.<solar_water_return_temp>
+                below: sensor.<pool_water_temp>
+                enabled: true
+        sequence:
+          - data: {}
+            target:
+              entity_id: switch.<solar_water_pump>
+            action: switch.turn_off
+    default: # Option 3 default, failsafe although usually run it disabled as it should never get here 
+      - data: {}
+        target:
+          entity_id: switch.<solar_water_pump>
+        enabled: false
+        action: switch.turn_off
+mode: queued
+max: 10
