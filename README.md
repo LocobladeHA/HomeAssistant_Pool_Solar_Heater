@@ -11,7 +11,10 @@ Logic: If the solar panel air temperature is 5c or more above the pool water tem
 #### **pool_temp_add_5c.yaml**
 Helper automation that updates the input_<boolean_pool_water_temp_plus5c>`
 
-**For these automations to run you'll need to provide the following inputs and helpers:**
+#### **Optional_Sensors.yaml**
+You can use these sensors to caclulate the realtime heat output of your solar panels in kW and display them on your front end.
+
+**To run the automations you'll need to provide the following inputs and helpers:**
 
 #### **sensor.<solar_panel_air_temp>**
 Temperature sensor entity monitoring the air temperature of the solar panel. My panels are enclosed with glass and reach 65c+ in sunny weather and 30+c even when overcast meaning it's easy to detect when enoughsun is hitting the panel to generate heat. If your panels are open the air and aren't enclosed in glass / plastic then I'd suggest putting your sensor in a clear sealed box next to the panels to replicate the greenhouse effect because open air temperature itself won't necessarily be significantly higher when the sun is out and won't give a good indicator of solar generation potential so the automation won't trigger reliably.
