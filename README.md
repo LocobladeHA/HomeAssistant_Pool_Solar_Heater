@@ -17,7 +17,7 @@ Not needed for the main automation but you can add these sensors to caclulate th
 ### **To run the automations you'll need to provide the following input entities and helpers:**
 
 #### **sensor.<solar_panel_air_temp>**
-Temperature sensor entity monitoring the air temperature of the solar panel. My panels are enclosed with glass and reach 65c+ in sunny weather and 30+c even when overcast meaning it's easy to detect when enoughsun is hitting the panel to generate heat. If your panels are open the air and aren't enclosed in glass / plastic then I'd suggest putting your sensor in a clear sealed box next to the panels to replicate the greenhouse effect because open air temperature itself won't necessarily be significantly higher when the sun is out and won't give a good indicator of solar generation potential so the automation won't trigger reliably.
+Temperature sensor entity monitoring the air temperature of the solar panel. My panels are enclosed with glass and reach 65c+ in sunny weather and 30+c even when overcast (when it can still generate some heat) meaning it's easy to detect when enough sun is hitting the panel to likely generate heat and start the automation. If your panels are open the air and aren't enclosed in glass / plastic then I'd suggest putting your sensor in a clear sealed box next to the panels to try and replicate the greenhouse effect because open air temperature itself won't necessarily be significantly higher when the sun is out and it won't give a good indicator of solar generation potential so the automation won't trigger reliably.
 
 #### **sensor.<pool_water_temp>**
 Temperature sensor entity monitoring the pool water temperature
