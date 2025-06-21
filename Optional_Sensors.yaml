@@ -1,0 +1,24 @@
+# Add these to your sensor template yaml
+# The platorm filter gives a smoothed out moving average of the returning water temperature and is used by the Kw calculating platform filter.
+# The platform template calculates how much heat output in Kw the panels are generating. 
+# Note you need to change the <FLOW RATE IN LITRES/MIN> value to your solar panel return flow rate in litres / minute, measure with a bucket and stopwatch :)
+
+  - platform: filter
+    name: "filtered pool solar output"
+    entity_id: sensor.<solar_water_return_temp>
+    filters:
+      - filter: outlier
+        window_size: 4
+        radius: 2.0
+      - filter: lowpass
+        time_constant: 10
+      - filter: time_simple_moving_average
+        window_size: "00:02"
+        precision: 2
+
+  - platform: template
+    sensors:
+    pool_solar_output_kw:        
+        friendly_name: 'Pool Solar Panel Output kW'
+        value_template: "{{ max((((<FLOW RATE IN LITRES/MIN>/60) * 4180 * (states('sensor.filtered_pool_solar_output') | float - states('sensor.<pool_water_temp>') | float))/1000)|float, 0)|round(2) }}"
+        unit_of_measurement: "kW"
