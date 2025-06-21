@@ -16,7 +16,7 @@ Temperature sensor entity monitoring the air temperature of the solar panel. My 
 Temperature sensor entity monitoring the pool water temperature
 
 #### **sensor.<solar_water_return_temp>**
-Temperature sensor entity monitoring the return water temperature from the solar panels. Can b=e tricky to monitor, I bought a Tee for the 18mm hose returning from the panels then glued the sensor into this so it sits directly in the return flow.
+Temperature sensor entity monitoring the return water temperature from the solar panels. Can be tricky to monitor, I bought a Tee that fits the 18mm hose returning from the panels then glued the sensor into this so the probe sits almost directly in the return flow.
 
 #### **switch.<solar_water_pump>**
 Smart switch controlling the pump that circulates water around the solar panels
