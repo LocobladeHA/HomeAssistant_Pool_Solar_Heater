@@ -1,0 +1,34 @@
+# Use this automation if the pool is too hot and you want to accelerate the cooling overnight. Running the water through 
+# my panels for 12 hours on a 20c warm night in the summer drops a hot pool by about 2c more than it normally would drop 
+# by natural overnight cooling alone.
+# Change the "above: 32" line to your chosen temperature in celcius
+
+alias: Pool Cooling Overnight
+description: ""
+triggers:
+  - trigger: state
+    entity_id:
+      - sensor.<pool_water_temp>
+conditions:
+  - condition: time
+    after: "20:59:00"
+    before: "08:00:00"
+actions:
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.<pool_water_temp>
+            above: 32
+        sequence:
+          - action: switch.turn_on
+            metadata: {}
+            data: {}
+            target:
+              entity_id: switch.<solar_water_pump>
+    default:
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.<solar_water_pump>
+mode: single
