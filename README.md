@@ -2,19 +2,17 @@
 Home Assistant automations to control a DIY pool solar heating system. Controls a water pump that circlates water through the solar panels based on temperature feeds from 3 temperature sensors such as Sonoff TH Elite with waterproof temperature probe.
 
 #### **solar_manager.yaml** 
-This is the main automation that controls a water pump, circulating pool water around the solar panels when they're warm enough to heat the water. Note all temperatures are in celcius.
+This is the main automation that controls a water pump, circulating pool water around the solar panels when they're warm enough to heat the water. The automation triggers whenever the solar panel air temperature changes with some conditions to prevent it running at night etc. Note all temperatures are in celcius.
 
-The automation triggers whenever the solar panel air temperature changes with some conditions to prevent it running at night etc.
-
-Logic: If the solar panel air temperature is 5c or more above the pool water temperature it will start the pump for 8 minutes to get a reliable return flow temperature from the panels. It then runs a while loop to monitor the pool water temperature and the water returning from the solar panels every 15 seconds. If the return water remains warmer than the pool water it will stay in the loop, letting the pump continue to run. If the return water isn't warmer than the pool water it will break out of the loop and stop the pump. The 5c offset works for my panels but you may need to play with the threshold via the helper input pool_temp_add_5c.yaml automation to suit your setup.
+Automation Logic: If the solar panel air temperature is 5c or more above the pool water temperature it will start the pump for 8 minutes to get a reliable return flow temperature from the panels. It then runs a while loop to monitor the pool water temperature and the water returning from the solar panels every 15 seconds. If the return water remains warmer than the pool water it will stay in the loop, letting the pump continue to run. If the return water isn't warmer than the pool water it will break out of the loop and stop the pump. The 5c offset works for my panels but you may need to play with the threshold via the helper input pool_temp_add_5c.yaml automation to suit your setup.
 
 #### **pool_temp_add_5c.yaml**
-Helper automation that updates the input_<boolean_pool_water_temp_plus5c>`
+Helper automation that updates the input_<boolean_pool_water_temp_plus5c>
 
 #### **Optional_Sensors.yaml**
-You can use these sensors to caclulate the realtime heat output of your solar panels in kW and display them on your front end.
+Not needed for the main automation but you can add these sensors to caclulate the realtime heat output of your solar panels in kW for display on your dashboard.
 
-**To run the automations you'll need to provide the following inputs and helpers:**
+**To run the automations you'll need to provide the following input entities and helpers:**
 
 #### **sensor.<solar_panel_air_temp>**
 Temperature sensor entity monitoring the air temperature of the solar panel. My panels are enclosed with glass and reach 65c+ in sunny weather and 30+c even when overcast meaning it's easy to detect when enoughsun is hitting the panel to generate heat. If your panels are open the air and aren't enclosed in glass / plastic then I'd suggest putting your sensor in a clear sealed box next to the panels to replicate the greenhouse effect because open air temperature itself won't necessarily be significantly higher when the sun is out and won't give a good indicator of solar generation potential so the automation won't trigger reliably.
