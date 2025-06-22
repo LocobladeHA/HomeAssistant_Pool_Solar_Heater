@@ -4,13 +4,13 @@ A Home Assistant automations to control a DIY pool solar heating system. Control
 #### **solar_manager.yaml** 
 This is the main automation that controls a water pump, circulating pool water around the solar panels when they're warm enough to heat the water. The automation triggers whenever the solar panel air temperature changes with some conditions to prevent it running at night etc. Note all temperatures are in celcius.
 
-Automation Logic: If the solar panel internal air temperature is 5c or more above the pool water temperature it will start the pump for 8 minutes to get a reliable return flow temperature from the panels. It then runs a while loop to monitor the pool water temperature and the water returning from the solar panels every 15 seconds. If the return water remains warmer than the pool water it will stay in the loop, letting the pump continue to run. If the return water isn't warmer than the pool water it will break out of the loop and stop the pump. The 5c offset works for my panels but you may need to play with the threshold via the helper input pool_temp_add_5c.yaml automation to suit your setup.
-
-#### **pool_temp_add_5c.yaml**
-Helper automation that updates the input_<boolean_pool_water_temp_plus5c>
+Automation Logic: If the solar panel internal air temperature is 5c or more above the pool water temperature it will start the pump for 8 minutes to get a reliable return flow temperature from the panels. It then runs a while loop to monitor the pool water temperature and the water returning from the solar panels every 15 seconds. If the return water is warmer than the pool water it will stay in the loop, letting the pump continue to run. If the return water isn't warmer than the pool water it will break out of the loop and stop the pump. The 5c offset against pool temperature works for my panels but you may need to play with the threshold via the sensor.solar_min_target_temp sensor template to suit your needs.
 
 #### **Overnight_Cooling.yaml**
-Optional automation, can be used when the pool is too warm, running water through your solar panels overnight which has a cooling effect. My return water comes back about 2c lower than it left the pool when run on a summer night.
+Optional automation, can be used overnight when the pool is too warm by running water through your solar panels overnight which has a cooling effect. My return water comes back about 2c lower than it left the pool when run on a summer night and if drops the overall pool temperature significantly more than natural overnight cooling alone.
+
+#### **Required_Sensor.yaml**
+Sensor that updates sensor.solar_min_target_temp. The main automation uses this as a trigger to start the pump and keep the pump running all the time the panel is warm enough to generate heat
 
 #### **Optional_Sensors.yaml**
 Not needed for the main automation but you can add these sensors to caclulate the realtime heat output of your solar panels in kW for display on your dashboard.
@@ -31,11 +31,11 @@ Temperature sensor entity monitoring the return water temperature from the solar
 #### **switch.<solar_water_pump>**
 Smart switch controlling the pump that circulates water around the solar panels
 
-#### **input_<boolean_pool_water_temp_plus5c>**
-Helper updated by pool_temp_add_5c.yaml automation, adds 5c to the current pool temperature and the output is used as a threshold to compare the water temp against the solar panel air temp for triggering the automation. Adjust the threshold to suit your solution.
+#### **sensor.solar_min_target_temp**
+Sensor updated by solar_min_target_temp sensor template. Adds 5c to the current pool temperature and the output is used as a threshold to compare the water temp against the solar panel air temp for triggering the automation. Adjust the threshold to suit your needs.
 
 #### **input_<boolean_pool_in_use>**
-Helper updated by a switch on my front end which we can activate to turn off all pumps whilst the pool is in use or other times when we don't want the automation to run.
+Helper updated by a switch on my dashbaord which we can activate to turn off all pumps whilst the pool is in use or other times when we don't want the automation to run.
 
 My Panels:
-![alt text](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/cacfb90a23c6a951f953364447e5dc6ef1134b21/MySolarPanels.jpg?raw=true "Pool Solar Panels")
+![alt text](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/cacfb90a23c6a91f953364447e5dc6ef1134b21/MySolarPanels.jpg?raw=true "Pool Solar Panels")
