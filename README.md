@@ -1,5 +1,5 @@
 # HomeAssistant Pool Solar Heater Automation
-A Home Assistant automations to control a DIY pool solar heating system. Controls a water pump that circlates water through the solar panels based on temperature feeds from 3 temperature sensors such as Sonoff TH Elite with waterproof temperature probe.
+My Home Assistant automations to control a DIY pool solar heating system. Controls a water pump that circlates water through the solar panels based on temperature feeds from 3 temperature sensors such as Sonoff TH Elite with waterproof temperature probe.
 
 #### **solar_manager.yaml** 
 This is the main automation that controls a water pump, circulating pool water around the solar panels when they're warm enough to heat the water. The automation triggers whenever the solar panel air temperature changes with some conditions to prevent it running at night etc. Note all temperatures are in celcius.
