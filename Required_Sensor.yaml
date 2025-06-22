@@ -1,7 +1,8 @@
 # Used to set the target solar panel air temperature when the pump will remain running. 
 # I use pool temperature (sensor.<pool_water_temp>) then add 5c (float + 5) as the current pool temperature really dictates 
 # how hot the panel air temp needs to be in order to add meaningful heat to the circulated water. Adjust the float value if you 
-# find your panels need to be warmer or cooler to add heat to the water.
+# find your panels need to be warmer or cooler to add heat to the water. 
+
   - platform: template
     sensors:
       solar_min_target_temp:        
