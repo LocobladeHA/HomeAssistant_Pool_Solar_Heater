@@ -4,7 +4,7 @@
 # Note you need to change the <FLOW RATE IN LITRES/MIN> value to your solar panel return flow rate in litres / minute, measure with a bucket and stopwatch :)
 
   - platform: filter
-    name: "filtered pool solar output"
+    name: "filtered_pool_solar_output"
     entity_id: sensor.<solar_water_return_temp>
     filters:
       - filter: outlier
