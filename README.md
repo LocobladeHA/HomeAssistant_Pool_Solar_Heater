@@ -10,10 +10,10 @@ Automation Logic: If the solar panel internal air temperature is 5c or more abov
 Optional automation, can be used overnight when the pool is too warm by running water through your solar panels overnight which has a cooling effect. My return water comes back about 2c lower than it left the pool when run on a summer night and if drops the overall pool temperature significantly more than natural overnight cooling alone.
 
 #### **Required_Sensor.yaml**
-Sensor that updates sensor.solar_min_target_temp. The main automation uses this as a trigger to start the pump and keep the pump running all the time the panel is warm enough to generate heat
+Sensor that updates sensor.solar_min_target_temp. The main automation uses this as a trigger to start the pump and keep the pump running all the time the panel is warm enough to generate heat. Create in yaml or as a Helper Template Sensor
 
 #### **Optional_Sensors.yaml**
-Not needed for the main automation but you can add these sensors to caclulate the realtime heat output of your solar panels in kW for display on your dashboard.
+Not needed for the main automation but you can add these sensors to caclulate the realtime heat output of your solar panels in kW for display on your dashboard. Create in yaml or as a Helper Template Sensor and Filter Sensor
 
 
 
