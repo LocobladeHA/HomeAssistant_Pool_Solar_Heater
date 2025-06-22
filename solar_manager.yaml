@@ -21,10 +21,10 @@ conditions:
     below: 35
 actions:
   - choose:
-      - conditions: # Option 1 - Turns pump on for 8 minutes if the solar panel is 5c above the water temperature   
+      - conditions: # Option 1 - Turns pump on for 8 minutes if the solar panel air temp is above the target set by sensor.solar_min_target_temp   
           - condition: numeric_state
             entity_id: sensor.<solar_panel_air_temp>
-            above: input_<boolean_pool_water_temp_plus5c>
+            above: sensor.solar_min_target_temp
         sequence:   
           - target:
               entity_id: switch.<solar_water_pump>
