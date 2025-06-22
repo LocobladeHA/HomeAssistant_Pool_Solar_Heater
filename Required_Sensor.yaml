@@ -1,0 +1,9 @@
+# Used to set the target solar panel air temperature when the pump is triggered. 
+# I use pool temperature (sensor.<pool_water_temp>) then add 5c (float + 5) but you could use an outside ambient air temp sensor to compare against 
+# or anything that indicates the heat inside the solar panel is increasing due to the sun hitting it, which will then generate heat in the water within the pipes.
+  - platform: template
+    sensors:
+      solar_min_target_temp:        
+        friendly_name: 'Solar panel internal air temperature minimum target'
+        value_template: "{{ (states('sensor.<pool_water_temp>')|float + 5 |float) }}"
+        unit_of_measurement: "°C"
