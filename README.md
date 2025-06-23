@@ -37,5 +37,7 @@ Sensor updated by solar_min_target_temp sensor template. Adds 5c to the current 
 #### **input_<boolean_pool_in_use>**
 Helper updated by a switch on my dashbaord which we can activate to turn off all pumps whilst the pool is in use or other times when we don't want the automation to run.
 
+Solar Heating Layout:
+![Solar Heating Diagram](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/main/Solar%20Heater%20Layout.png)
 My Panels:
-![alt text](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/main/MySolarPanels.jpg "Pool Solar Panels")
+![My Solar Panels](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/main/MySolarPanels.jpg)
