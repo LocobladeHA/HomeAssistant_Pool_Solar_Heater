@@ -41,3 +41,5 @@ Solar Heating Layout:
 ![Solar Heating Diagram](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/main/Solar%20Heater%20Layout.png)
 My Panels:
 ![My Solar Panels](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/main/MySolarPanels.jpg)
+![PanelBuild](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/main/PanelBuild.jpg)
+
