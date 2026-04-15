@@ -50,4 +50,4 @@ Solar Heating Layout:
 My Panels:
 ![My Solar Panels](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/main/MySolarPanels.jpg)
 ![PanelBuild](https://github.com/LocobladeHA/HomeAssistant_Pool_Solar_Heater/blob/main/PanelBuild.jpg)
-
+My pump: AquaECO Pond Pump 8000L/H from Amazon - Chosen because of it's low power consumption (around 30-40w) for the pump head height and the amount of water it shifts. With the added resistance of all the pipework through 5 panels, I get around 10 Litres per minute (600L/hr) flow back to the pool, meaning it can circulate approximately half of my pool water through the panels on an average sunny day.
